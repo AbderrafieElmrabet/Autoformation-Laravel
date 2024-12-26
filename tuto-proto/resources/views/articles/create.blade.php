@@ -30,6 +30,6 @@
     </div>
 
     <button type="submit" class="btn btn-primary">Save Article</button>
-    <a href="{{ route('dashboard') }}" class="btn btn-secondary">Cancel</a>
+    <a href="{{ route('articles.index') }}" class="btn btn-secondary">Cancel</a>
 </form>
 @endsection

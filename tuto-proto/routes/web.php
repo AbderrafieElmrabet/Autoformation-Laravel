@@ -7,8 +7,10 @@ use App\Models\Video;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
+Auth::routes();
+
 Route::get('/', function () {
-    return view('welcome');
+    return view('auth.login');
 });
 
 // Route::get('/Article', function () {
@@ -20,22 +22,24 @@ Route::get('/', function () {
 //     dd(['articles' => [$article, $video]]);
 // });
 
-Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware('auth');
+// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+// Route::get('/dashboard', function () {
+//     return view('dashboard');
+// })->middleware('auth');
 
-Route::get('/adminlte', function () {
-    return view('adminlte::page');
-});
+// Route::get('/adminlte', function () {
+//     return view('adminlte::page');
+// });
 
-Route::get('/dashboard', function () {
-    return view('admin.dashboard');
-})->name('dashboard');
+// Route::get('/dashboard', function () {
+//     return view('admin.dashboard');
+// })->name('dashboard');
 
 Route::get('/articles/create', [ArticleController::class, 'create'])->name('articles.create');
 Route::resource('articles', controller: ArticleController::class);
 Route::post('/articles', [ArticleController::class, 'store'])->name('articles.store');
+Route::delete('/articles/{article}', [ArticleController::class, 'destroy'])->name('articles.destroy');
+// Route::get('/articles', [ArticleController::class, 'index'])->name('article.index')->middleware('role:admin');
+Route::get('/home', [ArticleController::class, 'home'])->name('home');
 // routes/web.php

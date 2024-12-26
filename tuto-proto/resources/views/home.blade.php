@@ -2,22 +2,30 @@
 
 @section('content')
 <div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Dashboard') }}</div>
-
-                <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
-                    @endif
-
-                    {{ __('You are logged in!') }}
-                </div>
-            </div>
-        </div>
-    </div>
+    <h1>Articles</h1>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Content</th>
+                <th>Category</th>
+                <th>Author</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach($articles as $article)
+            <tr>
+                <td>{{ $article->title }}</td>
+                <td>{{ $article->category->name ?? 'No Category' }}</td>
+                <td>
+                    @foreach($article->tags as $tag)
+                    <span class="badge badge-info">{{ $tag->name }}</span>
+                    @endforeach
+                </td>
+                <td>{{ $article->user->name ?? 'Unknown Author' }}</td>
+            </tr>
+            @endforeach
+        </tbody>
+    </table>
 </div>
 @endsection

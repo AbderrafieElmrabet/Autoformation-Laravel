@@ -36,10 +36,11 @@ Route::get('/', function () {
 //     return view('admin.dashboard');
 // })->name('dashboard');
 
+// Route::get('/articles', [ArticleController::class, 'index'])->name('article.index')->middleware('role:admin');
+// routes/web.php
+
 Route::get('/articles/create', [ArticleController::class, 'create'])->name('articles.create');
 Route::resource('articles', controller: ArticleController::class);
 Route::post('/articles', [ArticleController::class, 'store'])->name('articles.store');
 Route::delete('/articles/{article}', [ArticleController::class, 'destroy'])->name('articles.destroy');
-// Route::get('/articles', [ArticleController::class, 'index'])->name('article.index')->middleware('role:admin');
 Route::get('/home', [ArticleController::class, 'home'])->name('home');
-// routes/web.php
